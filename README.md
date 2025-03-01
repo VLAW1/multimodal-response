@@ -26,7 +26,11 @@ The responses are generated as follows:
 
 ## Setup Instructions
 
-1. Clone the repository and `cd` into it.
+1. Clone the repository and `cd` into it:
+   ``` sh
+   git clone https://github.com/VLAW1/multimodal-response.git
+   cd multimodal-response
+   ```
 
 2. Install the required dependencies:
    ``` sh
