@@ -10,11 +10,15 @@ class OpenAIClient(ModelClient):
     """Wrapper class to access OpenAI models."""
 
     def __init__(self, model: str, api_key: str) -> None:
-        """Initialize the OpenAI provider.
+        """
+        Initialize the OpenAI client.
 
-        Args:
-            api_key: OpenAI API key
-            kwargs: Additional configuration options
+        Parameters
+        ----------
+        model : str
+            Desired model to use
+        api_key : str
+            OpenAI API key
         """
         self.client = openai.OpenAI(api_key=api_key)
         self.model = model
@@ -26,7 +30,9 @@ class OpenAIClient(ModelClient):
         max_tokens: int = 2000,
         temperature: float = 0.5,
     ) -> str:
-        """Generate text using OpenAI model."""
+        """
+        Generate text using OpenAI model.
+        """
         model = model or self.model
 
         response = self.client.chat.completions.create(
@@ -45,7 +51,9 @@ class OpenAIClient(ModelClient):
         size: str = '1024x1024',
         quality: str = 'standard',
     ) -> str:
-        """Generate an image using DALL-E."""
+        """
+        Generate an image using DALL-E.
+        """
         model = model or self.model
 
         response = self.client.images.generate(

@@ -61,7 +61,6 @@ class TaskPlanner:
             prompt=prompt,
         )
         log.info(f'Planning prompt: {planning_prompt}')
-        print(f'Planning prompt: {planning_prompt}')
 
         plan = await self.client.generate_plan(
             prompt=planning_prompt,
@@ -70,6 +69,5 @@ class TaskPlanner:
             temperature=self.temperature,
         )
         log.info(f'Generated plan: {plan}')
-        print(f'Generated plan: {plan}')
 
         return plan['subtasks']

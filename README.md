@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project generates a Multimodal Response using both text and images through an orchestrated workflow.
+This project generates a response in a text-to-text-and-image fashion where the response to a user prompt uses both text and images through an orchestrated workflow.
 The Task Planner plans responses and coordinates between text and image generators, allowing for interleaved text and image outputs.
 
 ## Example
@@ -44,7 +44,7 @@ The responses are generated as follows:
    ``` sh
    ANTHROPIC_API_KEY="your-anthropic-key"
    OPENAI_API_KEY="your-openai-key"
-   GOOGLE_API_KEY="your-google-key" # To do: Add support for Google Gemini models
+   GOOGLE_API_KEY="your-google-key"
    ```
 
 5. Configure the providers, models, and parameters in `setup.py` (a default setup is already provided).
@@ -59,9 +59,7 @@ The responses are generated as follows:
 Your response will be saved as `response.md` (or `response.html` if you switch the save function in `setup.py`).
 You can also view some intermediate outputs in the `app.log` files that will be generated.
 
-## To Do
-
-Currently, support for Google Gemini Models has not been implemented (stay tuned)...
+<!-- ## To Do -->
 
 ## License
 This project is licensed under the MIT License.

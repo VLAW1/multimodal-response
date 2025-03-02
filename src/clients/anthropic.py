@@ -13,9 +13,12 @@ class AnthropicClient(ModelClient):
         """
         Initialize the client.
 
-        Args:
-            api_key: Anthropic API key
-            kwargs: Additional configuration options
+        Parameters
+        ----------
+        model : str
+            Desired model to use
+        api_key : str
+            Anthropic API key
         """
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model

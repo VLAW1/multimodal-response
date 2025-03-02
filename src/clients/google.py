@@ -1,19 +1,30 @@
-# import json
-# from typing import Any
-from src.models.provider import ModelProvider
+import json
+from typing import Any
+from io import BytesIO
+
+from google import genai
+from google.genai import types
+from PIL import Image
+
+from src.models.provider import ModelClient
 
 
-class GoogleProvider(ModelProvider):
+class GoogleClient(ModelClient):
     """Wrapper class to access Google models."""
 
-    def __init__(self, api_key: str | None = None, **kwargs) -> None:
-        """Initialize the Google provider.
-
-        Args:
-            api_key: Google API key
-            kwargs: Additional configuration options
+    def __init__(self, model: str, api_key: str) -> None:
         """
-        raise NotImplementedError
+        Initialize the client.
+
+        Parameters
+        ----------
+        model : str
+            Desired model to use
+        api_key : str
+            Google API key
+        """
+        self.client = genai.Client(api_key=api_key)
+        self.model = model
 
     async def generate_text(
         self,
@@ -21,15 +32,64 @@ class GoogleProvider(ModelProvider):
         model: str | None = None,
         max_tokens: int = 1024,
         temperature: float = 0.5,
-        **kwargs,
     ) -> str:
-        raise NotImplementedError
+        """
+        Generate text.
+        """
+        model = model or self.model
+
+        response = self.client.models.generate_content(
+            model=model,
+            contents=[prompt],
+            config=types.GenerateContentConfig(
+                max_output_tokens=max_tokens,
+                temperature=temperature,
+            ),
+        )
+
+        return response.text
 
     async def generate_image(
         self,
         prompt: str,
-        model: str | None = None,
-        size: str = '1024x1024',
-        **kwargs,
+        model: str = 'imagen-3.0-generate-002',
+        # size: str = '1024x1024',
     ) -> str:
-        raise NotImplementedError
+        """
+        Generate an image using Imagen.
+        """
+        response = self.client.models.generate_images(
+            model=model,
+            prompt=prompt,
+            config=types.GenerateImagesConfig(
+                number_of_images=1,
+            ),
+        )
+
+        image = Image.open(
+            BytesIO(response.generated_images[0].image.image_bytes)
+        )
+        return image
+
+    async def generate_plan(
+        self,
+        prompt: str,
+        model: str | None = None,
+        max_tokens: int = 4000,
+        temperature: float = 0.5,
+    ) -> dict[str, Any]:
+        """
+        Generate structured plan with Gemini.
+        """
+        model = model or self.model
+
+        response = self.client.models.generate_content(
+            model=model,
+            contents=[prompt],
+            config=types.GenerateContentConfig(
+                max_output_tokens=max_tokens,
+                temperature=temperature,
+            ),
+        )
+
+        return json.loads(response.text)

@@ -93,7 +93,6 @@ class TaskManager:
             # before_context=before_context,
             # after_context=after_context,
         )
-        # print(f'Refining prompt: {refine_prompt}')
         response = await self.text_client.generate_text(prompt=refine_prompt)
 
         # reconstruct subtask with refined prompt
