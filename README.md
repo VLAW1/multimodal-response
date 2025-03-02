@@ -9,9 +9,7 @@ The Task Planner plans responses and coordinates between text and image generato
 
 On prompt:
 
-```
-Explain the impact of quantum computing on modern cryptography. Include diagrams showing how quantum algorithms like Shor's algorithm can break RSA encryption. Compare the timeline of quantum computing development with the evolution of post-quantum cryptographic methods. End with a visual representation of which current encryption methods are most vulnerable to quantum attacks.
-```
+> Explain the impact of quantum computing on modern cryptography. Include diagrams showing how quantum algorithms like Shor's algorithm can break RSA encryption. Compare the timeline of quantum computing development with the evolution of post-quantum cryptographic methods. End with a visual representation of which current encryption methods are most vulnerable to quantum attacks.
 
 Response shown in `example-response.md`.
 
