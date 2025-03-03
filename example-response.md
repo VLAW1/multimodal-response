@@ -22,7 +22,7 @@ Symmetric encryption like AES operates on different principles, utilizing substi
 
 While these mathematical foundations have successfully protected digital communications for decades, they share a critical vulnerability: their security relies on computational hardness assumptions specifically against classical computing architectures. Quantum computing introduces fundamentally different computational models that can exploit mathematical properties in ways classical computers cannot. Shor's algorithm, for instance, can theoretically factor large integers in polynomial time O(log³ n), potentially undermining RSA and ECC security. This looming threat has catalyzed the development of quantum-resistant cryptographic alternatives that maintain security even against quantum computational approaches.
 
-![Flowchart diagram showing the process of RSA encryption and decryption including key generation, encryption with public key, and decryption with private key.](images/img-DbCFcQkA94Qz6sEsgx73KLRA.png)
+![Flowchart diagram showing the process of RSA encryption and decryption including key generation, encryption with public key, and decryption with private key.](example-images/img-DbCFcQkA94Qz6sEsgx73KLRA.png)
 
 _Figure 1: Traditional RSA encryption process relying on the difficulty of prime factorization_
 
@@ -86,11 +86,11 @@ In practical terms, a sufficiently powerful quantum computer could factor a 2048
 
 Current estimates suggest that quantum computers capable of breaking RSA-2048 might emerge within 10-15 years, though significant engineering challenges remain. This timeline underscores the urgency of transitioning to post-quantum cryptographic standards that remain secure against both classical and quantum attacks.
 
-![Technical diagram illustrating how Shor's algorithm uses quantum circuits to efficiently factor large numbers and break RSA encryption.](images/img-FbzmLRP2aFEvTTuHWEkxLa3f.png)
+![Technical diagram illustrating how Shor's algorithm uses quantum circuits to efficiently factor large numbers and break RSA encryption.](example-images/img-FbzmLRP2aFEvTTuHWEkxLa3f.png)
 
 _Figure 2: How Shor's algorithm leverages quantum properties to break RSA encryption_
 
-![Logarithmic graph comparing the exponential growth in runtime for classical factoring algorithms versus the polynomial growth for Shor's quantum algorithm as number size increases.](images/img-XNAkK6K0dmFfG5J17DNl9whX.png)
+![Logarithmic graph comparing the exponential growth in runtime for classical factoring algorithms versus the polynomial growth for Shor's quantum algorithm as number size increases.](example-images/img-XNAkK6K0dmFfG5J17DNl9whX.png)
 
 _Figure 3: Runtime comparison between classical factoring algorithms and Shor's quantum algorithm_
 
@@ -179,7 +179,7 @@ Organizations now face the "harvest now, decrypt later" threat, where encrypted 
 
 The quantum-cryptographic arms race continues to accelerate, with each field responding to advances in the other. For organizations managing sensitive data with long-term security requirements, the cryptographic transition has become not a question of if, but when and how.
 
-![Dual timeline comparing quantum computing milestones and post-quantum cryptography developments from the 1990s to present day.](images/img-UBxPrG7HHRSWH0Pqg2w6kvDM.png)
+![Dual timeline comparing quantum computing milestones and post-quantum cryptography developments from the 1990s to present day.](example-images/img-UBxPrG7HHRSWH0Pqg2w6kvDM.png)
 
 _Figure 4: Parallel evolution of quantum computing capabilities and post-quantum cryptographic methods_
 
@@ -231,7 +231,7 @@ While active research continues, isogeny-based methods currently face significan
 
 As of 2023, NIST has selected CRYSTALS-Kyber for key establishment, with CRYSTALS-Dilithium and Falcon for digital signatures. Classic McEliece and SPHINCS+ serve as alternate mechanisms. The standardization process continues with additional candidates under consideration for future rounds. Lattice-based approaches have emerged as the front-runners for near-term adoption due to their balance of security assurance, performance characteristics, and implementation flexibility across diverse application environments.
 
-![Heat map visualization showing the relative vulnerability of different encryption methods to quantum computing attacks, color-coded from red (highly vulnerable) to green (quantum resistant).](images/img-lWbQpiivpD6ZKb8KYjBNIHeI.png)
+![Heat map visualization showing the relative vulnerability of different encryption methods to quantum computing attacks, color-coded from red (highly vulnerable) to green (quantum resistant).](example-images/img-lWbQpiivpD6ZKb8KYjBNIHeI.png)
 
 _Figure 5: Vulnerability assessment of current encryption methods to quantum computing attacks_
 
