@@ -30,8 +30,10 @@ The responses are generated as follows:
    cd multimodal-response
    ```
 
-2. Install the required dependencies:
+2. Create a virtual environment and install the required dependencies:
    ``` sh
+   python3 -m venv .venv
+   source .venv/bin/activate
    pip install -r requirements.txt
    ```
 
