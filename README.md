@@ -46,7 +46,7 @@ The responses are generated as follows:
    ``` sh
    ANTHROPIC_API_KEY="your-anthropic-key"
    OPENAI_API_KEY="your-openai-key"
-   GOOGLE_API_KEY="your-google-key"
+   GEMINI_API_KEY="your-google-key"
    ```
 
 5. Configure the providers, models, and parameters in `setup.py` (a default setup is already provided).
