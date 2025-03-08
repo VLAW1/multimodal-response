@@ -6,6 +6,7 @@ __pycache__
 *.pyc
 
 testing-responses/
+tikz_test_images/
 
 config/
 config/**

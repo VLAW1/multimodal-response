@@ -55,6 +55,35 @@ class AnthropicClient(ModelClient):
             'Anthropic/Claude does not support image generation.'
         )
 
+    async def generate_tikz(
+        self,
+        prompt: str,
+        model: str | None = None,
+        max_tokens: int = 2000,
+        temperature: float = 0.5,
+    ) -> str:
+        """
+        Generate TikZ code with Claude.
+        """
+        model = model or self.model
+
+        response = self.client.messages.create(
+            model=model,
+            messages=[{'role': 'user', 'content': prompt}],
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+
+        tikz_code = response.content[0].text
+
+        # Clean up the response to extract just the TikZ code
+        if '\\begin{tikzpicture}' in tikz_code:
+            tikz_code = tikz_code.split('\\begin{tikzpicture}')[1]
+        if '\\end{tikzpicture}' in tikz_code:
+            tikz_code = tikz_code.split('\\end{tikzpicture}')[0]
+
+        return f'\\begin{{tikzpicture}}\n{tikz_code.strip()}\n\\end{{tikzpicture}}'
+
     async def generate_plan(
         self,
         prompt: str,

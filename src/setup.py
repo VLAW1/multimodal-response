@@ -36,11 +36,17 @@ async def respond():
         model='dall-e-3',
         api_key=os.getenv('OPENAI_API_KEY'),
     )
+    tikz_element_client = ModelClient.create_client(
+        provider=ModelProvider.ANTHROPIC,
+        model='claude-3-7-sonnet-20250219',
+        api_key=os.getenv('ANTHROPIC_API_KEY'),
+    )
 
     # Initialize the task manager
     task_manager = TaskManager(
         text_element_client=text_element_client,
         image_element_client=image_element_client,
+        tikz_element_client=tikz_element_client,
         task_planner=task_planner,
         refine_tasks=True,
     )

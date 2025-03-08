@@ -9,6 +9,7 @@ from src.orchestration.prompts.refinement_prompt import (
     refine_image_task_template,
     refine_text_task_template,
 )
+from src.utils.tikz_compiler import compile_tikz
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
@@ -22,6 +23,7 @@ class TaskManager:
         self,
         text_element_client: ModelClient,
         image_element_client: ModelClient,
+        tikz_element_client: ModelClient,
         task_planner: TaskPlanner,
         refine_tasks: bool = False,
     ) -> None:
@@ -41,6 +43,7 @@ class TaskManager:
         """
         self.text_client = text_element_client
         self.image_client = image_element_client
+        self.tikz_client = tikz_element_client
         self.planner = task_planner
         self.refine_tasks = refine_tasks
 
@@ -66,6 +69,7 @@ class TaskManager:
 
         if task_type == 'text':
             content = await self.text_client.generate_text(task_prompt)
+
         elif task_type == 'image':
             content = {}
             content['url'] = await self.image_client.generate_image(
@@ -73,6 +77,20 @@ class TaskManager:
             )
             content['alt_text'] = task.get('alt_text')
             content['caption'] = task.get('caption')
+
+        elif task_type == 'tikz':
+            content = {}
+            tikz_code = await self.tikz_client.generate_tikz(
+                prompt=task_prompt
+            )
+
+            tikz_image_path = compile_tikz(tikz_code)
+
+            content['code'] = tikz_code
+            content['image_path'] = tikz_image_path
+            content['alt_text'] = task.get('alt_text')
+            content['caption'] = task.get('caption')
+
         return element_order, task_type, content
 
     async def _refine_subtask_prompts(

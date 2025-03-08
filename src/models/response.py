@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 class ElementType(StrEnum):
     TEXT = 'text'
     IMAGE = 'image'
+    TIKZ = 'tikz'
 
 
 class TextElement(BaseModel):
@@ -21,7 +22,15 @@ class ImageElement(BaseModel):
     caption: str | None = None
 
 
-type ResponseElement = TextElement | ImageElement
+class TikzElement(BaseModel):
+    type: ElementType = ElementType.TIKZ
+    code: str
+    image_path: str
+    alt_text: str | None = None
+    caption: str | None = None
+
+
+type ResponseElement = TextElement | ImageElement | TikzElement
 
 
 class MultimodalResponse(BaseModel):
@@ -47,6 +56,23 @@ class MultimodalResponse(BaseModel):
             self.add_text(content)
         elif type == 'image':
             self.add_image(**content)
+
+    def add_tikz(
+        self,
+        code: str,
+        image_path: str,
+        alt_text: str | None = None,
+        caption: str | None = None,
+    ) -> None:
+        """Add a TikZ figure element to the response."""
+        self.elements.append(
+            TikzElement(
+                code=code,
+                image_path=image_path,
+                alt_text=alt_text,
+                caption=caption,
+            )
+        )
 
     def to_markdown(self) -> str:
         """Convert the multimodal response to markdown format."""

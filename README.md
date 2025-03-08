@@ -17,10 +17,21 @@ Response shown in `example-response.md`.
 
 The responses are generated as follows:
 
-- A Task Planner is asked to generate a list of tasks for text and image elements to compose a response, along with a prompt for each element.
+- A Task Planner is asked to generate a list of tasks for text, image, and TikZ elements to compose a response, along with a prompt for each element.
 - Optionally, each subtask prompt is refined via another round of LLM calls.
 - With the subtasks, a Task Manager passes the subtask prompts to the respective text/image generation clients.
-- Finally, the individual text and image elements are sewn together to create the final response, and saved to a `.md` and/or `.html` file.
+- Finally, the individual text/image/TikZ elements are sewn together to create the final response, and saved to a `.md` and/or `.html` file.
+
+## Requirements
+
+This project was created with Python 3.12.9.
+
+For TikZ compilation, you will need to have LaTex with TikZ and ImageMagick installed on the system:
+
+- texlive-core or similar LaTeX distribution
+- imagemagick
+
+You can test your local TikZ compilation features by running `src/orchestration/prompts/tikz_prompt.py` as a script individually.
 
 ## Setup Instructions
 
@@ -64,4 +75,5 @@ You can also view some intermediate outputs in the `app.log` files that will be 
 <!-- ## To Do -->
 
 ## License
+
 This project is licensed under the MIT License.

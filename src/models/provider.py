@@ -22,16 +22,23 @@ class ModelClient(ABC):
         max_tokens: int = 2000,
         temperature: float = 0.5,
     ) -> str:
-        """Generate text from a prompt.
+        """
+        Generate text from a prompt.
 
-        Args:
-            prompt: The text prompt
-            model: Model name to use (provider-specific)
-            max_tokens: Maximum number of tokens to generate
-            temperature: Sampling temperature
-            kwargs: Additional provider-specific parameters
+        Parameters
+        ----------
+        prompt : str
+            The text prompt
+        model : str | None, optional
+            Model name to use (provider-specific), by default None
+        max_tokens : int, optional
+            Maximum number of tokens to generate, by default 2000
+        temperature : float, optional
+            Sampling temperature, by default 0.5
 
-        Returns:
+        Returns
+        -------
+        str
             Generated text
         """
         pass
@@ -44,16 +51,53 @@ class ModelClient(ABC):
         size: str = '1024x1024',
         quality: str = 'standard',
     ) -> str:
-        """Generate an image from a prompt.
+        """
+        Generate an image from a prompt.
 
-        Args:
-            prompt: Description of the image to generate
-            model: Model name to use (provider-specific)
-            size: Size specification for the image
-            kwargs: Additional provider-specific parameters
+        Parameters
+        ----------
+        prompt : str
+            Description of the image to generate
+        model : str | None, optional
+            Model name to use (provider-specific), by default None
+        size : str, optional
+            Size specification for the image, by default '1024x1024'
+        quality : str, optional
+            Quality specificiation for the image, by default 'standard'
 
-        Returns:
+        Returns
+        -------
+        str
             URL of the generated image
+        """
+        pass
+
+    @abstractmethod
+    async def generate_tikz(
+        self,
+        prompt: str,
+        model: str | None = None,
+        max_tokens: int = 2000,
+        temperature: float = 0.5,
+    ) -> str:
+        """
+        Generate TikZ code from a prompt.
+
+        Parameters
+        ----------
+        prompt : str
+            Description of the diagram to generate
+        model : str | None, optional
+            Model name to use (provider-specific), by default None
+        max_tokens : int, optional
+            Maximum number of tokens to generate, by default 2000
+        temperature : float, optional
+            Sampling temperature, by default 0.5
+
+        Returns
+        -------
+        str
+            Generated TikZ code
         """
         pass
 
@@ -67,6 +111,22 @@ class ModelClient(ABC):
     ) -> dict[str, Any]:
         """
         Generate structured plan.
+
+        Parameters
+        ----------
+        prompt : str
+            Description of the diagram to generate
+        model : str | None, optional
+            Model name to use (provider-specific), by default None
+        max_tokens : int, optional
+            Maximum number of tokens to generate, by default 2000
+        temperature : float, optional
+            Sampling temperature, by default 0.5
+
+        Returns
+        -------
+        dict[str, Any]
+            Generated plan (in JSON format)
         """
         pass
 
@@ -77,14 +137,27 @@ class ModelClient(ABC):
         model: str,
         api_key: str,
     ) -> 'ModelClient':
-        """Factory method to create a client instance.
+        """
+        Factory method to create a client instance.
 
-        Args:
-            provider: Type of client to create
-            api_key: API key for the provider
+        Parameters
+        ----------
+        provider : ModelProvider
+            Type of client to create
+        model : str
+            Model to use (provider-specific)
+        api_key : str
+            API key for the provider
 
-        Returns:
+        Returns
+        -------
+        ModelClient
             A ModelClient instance
+
+        Raises
+        ------
+        ValueError
+            In case of unknown provider type
         """
         if provider == ModelProvider.OPENAI:
             from src.clients.openai import OpenAIClient
