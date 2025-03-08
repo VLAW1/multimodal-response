@@ -86,9 +86,9 @@ In practical terms, a sufficiently powerful quantum computer could factor a 2048
 
 Current estimates suggest that quantum computers capable of breaking RSA-2048 might emerge within 10-15 years, though significant engineering challenges remain. This timeline underscores the urgency of transitioning to post-quantum cryptographic standards that remain secure against both classical and quantum attacks.
 
-![Technical diagram illustrating how Shor's algorithm uses quantum circuits to efficiently factor large numbers and break RSA encryption.](example-images/img-FbzmLRP2aFEvTTuHWEkxLa3f.png)
+![Technical diagram illustrating the quantum circuit for Shor's algorithm with two registers, quantum Fourier transform, and measurements used to factor large numbers and break RSA encryption.](example-images/img-FbzmLRP2aFEvTTuHWEkxLa3f.png)
 
-_Figure 2: How Shor's algorithm leverages quantum properties to break RSA encryption_
+_Figure 2: Quantum circuit implementation of Shor's algorithm_
 
 ![Logarithmic graph comparing the exponential growth in runtime for classical factoring algorithms versus the polynomial growth for Shor's quantum algorithm as number size increases.](example-images/img-XNAkK6K0dmFfG5J17DNl9whX.png)
 

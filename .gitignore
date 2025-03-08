@@ -10,3 +10,6 @@ tikz_test_images/
 
 config/
 config/**
+
+.DS_Store
+*.DS_Store

@@ -72,7 +72,9 @@ You can test your local TikZ compilation features by running `src/orchestration/
 Your response will be saved as `response.md` (or `response.html` if you switch the save function in `setup.py`).
 You can also view some intermediate outputs in the `app.log` files that will be generated.
 
-<!-- ## To Do -->
+## To Do
+
+1. Update OpenAI generate plan to make API requests to their reasoning models appropriately (now that API access is released)
 
 ## License
 
